@@ -25,9 +25,9 @@ function Dashboard() {
     setIsLoading(true);
     try {
       const [prodRes, salesRes, custRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/products`),
-        fetch(`${API_BASE_URL}/sales`),
-        fetch(`${API_BASE_URL}/customers`)
+        fetch(`${API_BASE_URL}/api/products`),
+        fetch(`${API_BASE_URL}/api/sales`),
+        fetch(`${API_BASE_URL}/api/customers`)
       ]);
 
       const [prodData, salesData, custData] = await Promise.all([
@@ -93,9 +93,9 @@ function Dashboard() {
                 👥
               </div>
               <h3 className="stat-title ">Total Customers</h3>
-              <p className="stat-value" style={{ color: "" }}>{customers.length}</p>
+              <p className="stat-value">{customers.length}</p>
             </div>
-            <div className="stat-card  ">
+            <div className="stat-card">
               <div className="stat-icon" style={{ backgroundColor: "red" }}>
                 💰
               </div>
