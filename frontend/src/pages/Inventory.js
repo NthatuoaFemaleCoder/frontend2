@@ -13,7 +13,7 @@ function Inventory() {
   const fetchProducts = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/products`);
+      const response = await fetch(`${API_BASE_URL}/api/products`);
       const data = await response.json();
       setProducts(data);
     } catch (error) {
@@ -36,7 +36,7 @@ function Inventory() {
     }
 
     try {
-      await fetch(`${API_BASE_URL}/inventory/${selectedProduct}`, {
+      await fetch(`${API_BASE_URL}/api/inventory/${selectedProduct}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ quantity: parseInt(quantity), action }),
