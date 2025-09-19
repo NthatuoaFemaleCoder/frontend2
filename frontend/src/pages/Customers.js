@@ -15,7 +15,7 @@ function Customers() {
   const fetchCustomers = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/customers`);
+      const response = await fetch(`${API_BASE_URL}/api/customers`);
       const data = await response.json();
       setCustomers(data);
     } catch (error) {
@@ -44,7 +44,7 @@ function Customers() {
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/customers`, {
+      const response = await fetch(`${API_BASE_URL}/api/customers`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -67,7 +67,7 @@ function Customers() {
     if (!window.confirm("Are you sure you want to delete this customer? This cannot be undone.")) return;
 
     try {
-      await fetch(`${API_BASE_URL}/customers/${id}`, { method: "DELETE" });
+      await fetch(`${API_BASE_URL}/api/customers/${id}`, { method: "DELETE" });
       fetchCustomers();
     } catch (error) {
       console.error("Error deleting customer:", error);
