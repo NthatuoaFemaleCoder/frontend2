@@ -1,0 +1,258 @@
+/* Inventory.css — Isolated, Beautiful Styling */
+
+.inventory-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  background-color: #f9fbfd;
+  min-height: 100vh;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e3799;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.page-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #1e3799, #4a69bd);
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+/* Form Card */
+.form-card {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(30, 55, 153, 0.08);
+  margin-bottom: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(30, 55, 153, 0.12);
+}
+
+.form-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2d3436;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f1f2f6;
+}
+
+.stock-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #2d3436;
+  font-size: 0.95rem;
+}
+
+.form-select,
+.form-input {
+  padding: 14px 16px;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-select:focus,
+.form-input:focus {
+  border-color: #1e3799;
+  box-shadow: 0 0 0 3px rgba(30, 55, 153, 0.15);
+}
+
+.submit-btn {
+  grid-column: 1 / -1;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #1e3799, #4a69bd);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: start;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 55, 153, 0.4);
+}
+
+.submit-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Table Styles */
+.table-card {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(30, 55, 153, 0.08);
+}
+
+.table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.table-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2d3436;
+  margin: 0;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #1e3799;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #636e72;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.inventory-table th,
+.inventory-table td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.inventory-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #2d3436;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.85rem;
+}
+
+.inventory-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.inventory-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.quantity-cell {
+  font-weight: 600;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.status-badge.in-stock {
+  background-color: purple;
+  color: #27ae60;
+}
+
+.status-badge.low-stock {
+  background-color: #fef9e7;
+  color:blue;
+}
+
+.status-badge.out-of-stock {
+  background-color: #fadbd8;
+  color: #e74c3c;
+}
+
+/* Animations */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .stock-form {
+    grid-template-columns: 1fr;
+  }
+
+  .inventory-container {
+    padding: 20px 15px;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .form-card,
+  .table-card {
+    padding: 20px;
+  }
+
+  .inventory-table th,
+  .inventory-table td {
+    padding: 12px 8px;
+    font-size: 0.9rem;
+  }
+}
