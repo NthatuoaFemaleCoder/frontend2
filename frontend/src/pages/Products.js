@@ -18,7 +18,7 @@ function Products() {
   const fetchProducts = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/products`);
+      const response = await fetch(`${API_BASE_URL}/api/products`);
       const data = await response.json();
       setProducts(data);
     } catch (error) {
@@ -45,8 +45,8 @@ function Products() {
     e.preventDefault();
     try {
       const url = editingId
-        ? `${API_BASE_URL}/products/${editingId}`
-        : `${API_BASE_URL}/products`;
+        ? `${API_BASE_URL}/api/products/${editingId}`
+        : `${API_BASE_URL}/api/products`;
 
       const method = editingId ? "PUT" : "POST";
 
@@ -68,7 +68,7 @@ function Products() {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this product?")) return;
     try {
-      await fetch(`${API_BASE_URL}/products/${id}`, { method: "DELETE" });
+      await fetch(`${API_BASE_URL}/api/products/${id}`, { method: "DELETE" });
       fetchProducts();
     } catch (error) {
       console.error("Error deleting product:", error);
