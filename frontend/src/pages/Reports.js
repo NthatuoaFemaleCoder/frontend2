@@ -12,8 +12,8 @@ function Reports() {
     setIsLoading(true);
     try {
       const [prodRes, salesRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/products`),
-        fetch(`${API_BASE_URL}/sales`),
+        fetch(`${API_BASE_URL}/api/products`),
+        fetch(`${API_BASE_URL}/api/sales`),
       ]);
 
       const [prodData, salesData] = await Promise.all([
@@ -101,19 +101,29 @@ function Reports() {
               </thead>
               <tbody>
                 {products.map((p, index) => (
-                  <tr key={p.id} className="fade-in-row" style={{ animationDelay: `${(index + 1) * 0.1}s` }}>
+                  <tr
+                    key={p.id}
+                    className="fade-in-row"
+                    style={{ animationDelay: `${(index + 1) * 0.1}s` }}
+                  >
                     <td>{p.name}</td>
                     <td>{p.category || "—"}</td>
                     <td className="quantity-cell">{p.quantity}</td>
                     <td>
-                      <span className={`status-badge ${
-                        p.quantity >= 10 ? "in-stock" :
-                        p.quantity > 0 ? "low-stock" :
-                        "out-of-stock"
-                      }`}>
-                        {p.quantity >= 10 ? "In Stock" :
-                         p.quantity > 0 ? "Low Stock" :
-                         "Out of Stock"}
+                      <span
+                        className={`status-badge ${
+                          p.quantity >= 10
+                            ? "in-stock"
+                            : p.quantity > 0
+                            ? "low-stock"
+                            : "out-of-stock"
+                        }`}
+                      >
+                        {p.quantity >= 10
+                          ? "In Stock"
+                          : p.quantity > 0
+                          ? "Low Stock"
+                          : "Out of Stock"}
                       </span>
                     </td>
                   </tr>
@@ -130,8 +140,13 @@ function Reports() {
         {lowStock.length > 0 ? (
           <ul className="alert-list">
             {lowStock.map((p, index) => (
-              <li key={p.id} className="alert-item fade-in" style={{ animationDelay: `${(index + 1) * 0.1}s` }}>
-                <strong>{p.name}</strong> — only <span className="alert-quantity">{p.quantity}</span> left!
+              <li
+                key={p.id}
+                className="alert-item fade-in"
+                style={{ animationDelay: `${(index + 1) * 0.1}s` }}
+              >
+                <strong>{p.name}</strong> — only{" "}
+                <span className="alert-quantity">{p.quantity}</span> left!
               </li>
             ))}
           </ul>
