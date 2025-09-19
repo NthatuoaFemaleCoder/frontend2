@@ -18,9 +18,9 @@ function Sales() {
     setIsLoading(true);
     try {
       const [prodRes, custRes, salesRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/products`),
-        fetch(`${API_BASE_URL}/customers`),
-        fetch(`${API_BASE_URL}/sales`),
+        fetch(`${API_BASE_URL}/api/products`),
+        fetch(`${API_BASE_URL}/api/customers`),
+        fetch(`${API_BASE_URL}/api/sales`),
       ]);
 
       const [prodData, custData, salesData] = await Promise.all([
@@ -43,7 +43,7 @@ function Sales() {
     fetchData();
   }, []);
 
-  // Handle change
+  // Handle form change
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -69,7 +69,7 @@ function Sales() {
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/sales`, {
+      const response = await fetch(`${API_BASE_URL}/api/sales`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -185,7 +185,11 @@ function Sales() {
               </thead>
               <tbody>
                 {sales.map((s, index) => (
-                  <tr key={index} className="fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <tr
+                    key={index}
+                    className="fade-in"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
                     <td className="product-cell">{getProductName(s.productId)}</td>
                     <td className="customer-cell">{getCustomerName(s.customerId)}</td>
                     <td className="quantity-cell">
